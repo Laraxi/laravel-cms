@@ -28,9 +28,6 @@
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-flower"></i>
 					</span>
-                <span class="login100-form-title p-b-34 p-t-27">
-						登录
-					</span>
                 <div class="wrap-input100 validate-input" data-validate="Enter username">
                     <input class="input100" type="text" id="username" name="username" placeholder="用户名">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
@@ -40,7 +37,7 @@
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                 </div>
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" id="login">
+                    <button class="login100-form-btn" id="login" type="button">
                         登录
                     </button>
                 </div>
@@ -63,7 +60,7 @@
         $.ajax({
                 url: '/admin/login',
                 type: 'post',
-                data: {username: username, password: password},
+                data: {username: username, password: password,_token:"{{csrf_token()}}"},
                 dataType: 'json',
                 cache: false,
                 success: function (data) {
@@ -75,10 +72,11 @@
                         alert(data.message);
                         return false;
                     }
-
+                },
+                error: function (xhr, error) {
+                    alert('网络错误');
                 }
             }
         );
     });
-
 </script>

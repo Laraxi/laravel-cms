@@ -9,28 +9,10 @@
 namespace App\Services;
 
 
-class BaseService
+use App\Http\Controllers\Admin\BaseController;
+
+class BaseService extends BaseController
 {
-    public static function get($key = null, $default = null)
-    {
-        return request()->get($key, $default);
-
-    }
-
-    public static function post($key = null, $default = null)
-    {
-        return request()->post($key, $default);
-    }
-
-    public static function json($code = null, $message = null, $data = [])
-    {
-        exit(json_encode([
-            'code' => $code,
-            'message' => $message,
-            'data' => $data,
-        ]));
-
-    }
 
 
 }

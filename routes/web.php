@@ -16,4 +16,10 @@ Route::get('/', function () {
 });
 Route::get('/admin/login', 'Admin\LoginController@login');
 Route::post('/admin/login', 'Admin\LoginController@login');
-Route::get('/admin/index', 'Admin\IndexController@index');
+
+Route::group(['middleware'=>['admin.login']],function (){
+    Route::get('/admin/index', 'Admin\IndexController@index');
+});
+
+
+
